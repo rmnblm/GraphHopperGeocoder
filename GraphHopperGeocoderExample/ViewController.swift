@@ -17,17 +17,25 @@ class ViewController: UIViewController {
 
         let accessToken = "GRAPHHOPPER_ACCESS_TOKEN"
         let geocoder = Geocoder(accessToken: accessToken)
-        let query = "Berlin"
-        let lat = CLLocationDegrees(exactly: 45.93272)
-        let lng = CLLocationDegrees(exactly: 11.58803)
-        let location = CLLocation(latitude: lat!, longitude: lng!)
+
+        // Forward Geocoding
+//        let query = "Berlin"
+//        let forwardGeocodeOptions = ForwardGeocodeOptions(query)
+
+        let lat = CLLocationDegrees(exactly: 46.80907)
+        let lng = CLLocationDegrees(exactly: 9.78098)
+
+//        let point = CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
+//        let forwardGeocodeOptions = ForwardGeocodeOptions(query, location: location)
+//
+//        let location = CLLocation(latitude: lat!, longitude: lng!)
+//        let forwardGeocodeOptions = ForwardGeocodeOptions(query, point: point)
+
+        // Reverse Geocoding
         let point = CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
+        let reverseGeocodeOptions = ReverseGeocodeOptions(point: point)
 
-        var options = GeocodeOptions(query)
-        options = GeocodeOptions("Berlin", point: point)
-        options = GeocodeOptions("Berlin", location: location)
-
-        _ = geocoder.calculate(options, completionHandler: { (placemarks, error) in
+        _ = geocoder.calculate(reverseGeocodeOptions, completionHandler: { (placemarks, error) in
             placemarks?.forEach({
                 print("\($0.point.latitude) \($0.point.longitude)")
                 print($0.osmId)
