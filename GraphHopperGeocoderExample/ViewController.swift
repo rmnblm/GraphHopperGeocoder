@@ -37,11 +37,16 @@ class ViewController: UIViewController {
 
         _ = geocoder.calculate(reverseGeocodeOptions, completionHandler: { (placemarks, error) in
             placemarks?.forEach({
+                print("\nPlacemark:")
                 print("\($0.point.latitude) \($0.point.longitude)")
                 print($0.osmId)
+                print($0.osmType)
+                print($0.osmKey)
+                print($0.osmValue)
                 print($0.name)
-                print($0.country)
                 print($0.city)
+                print($0.state)
+                print($0.country)
             })
         })
     }
