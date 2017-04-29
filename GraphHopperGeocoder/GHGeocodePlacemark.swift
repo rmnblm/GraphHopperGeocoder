@@ -7,17 +7,23 @@ open class Placemark {
     public let osmKey: String
     public let osmValue: String
     public let name: String
+    public let housenumber: String
+    public let street: String
+    public let postcode: String
     public let city: String
     public let state: String
     public let country: String
 
-    internal init(_ point: CLLocationCoordinate2D, osmId: Int, osmType: String, osmKey: String, osmValue: String, name: String, city: String, state: String, country: String) {
+    internal init(_ point: CLLocationCoordinate2D, osmId: Int, osmType: String, osmKey: String, osmValue: String, name: String, housenumber: String, street: String, postcode: String, city: String, state: String, country: String) {
         self.point = point
         self.osmId = osmId
         self.osmType = osmType
         self.osmKey = osmKey
         self.osmValue = osmValue
         self.name = name
+        self.housenumber = housenumber
+        self.street = street
+        self.postcode = postcode
         self.city = city
         self.state = state
         self.country = country
@@ -38,10 +44,13 @@ open class Placemark {
         let osmKey = json["osmKey"] as? String ?? ""
         let osmValue = json["osmValue"] as? String ?? ""
         let name = json["name"] as? String ?? ""
+        let housenumber = json["housenumber"] as? String ?? ""
+        let street = json["street"] as? String ?? ""
+        let postcode = json["postcode"] as? String ?? ""
         let city = json["city"] as? String ?? ""
         let state = json["state"] as? String ?? ""
         let country = json["country"] as? String ?? ""
 
-        self.init(point, osmId: osmId, osmType: osmType, osmKey: osmKey, osmValue: osmValue, name: name, city: city, state: state, country: country)
+        self.init(point, osmId: osmId, osmType: osmType, osmKey: osmKey, osmValue: osmValue, name: name, housenumber: housenumber, street: street, postcode: postcode, city: city, state: state, country: country)
     }
 }

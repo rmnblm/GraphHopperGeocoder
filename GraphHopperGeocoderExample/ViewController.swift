@@ -19,8 +19,8 @@ class ViewController: UIViewController {
         let geocoder = Geocoder(accessToken: accessToken)
 
         // Forward Geocoding
-//        let query = "Berlin"
-//        let forwardGeocodeOptions = ForwardGeocodeOptions(query)
+        let query = "Strela Davos"
+        let forwardGeocodeOptions = ForwardGeocodeOptions(query)
 
         let lat = CLLocationDegrees(exactly: 46.80907)
         let lng = CLLocationDegrees(exactly: 9.78098)
@@ -35,18 +35,19 @@ class ViewController: UIViewController {
         let point = CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
         let reverseGeocodeOptions = ReverseGeocodeOptions(point: point)
 
-        _ = geocoder.calculate(reverseGeocodeOptions, completionHandler: { (placemarks, error) in
+        _ = geocoder.calculate(forwardGeocodeOptions, completionHandler: { (placemarks, error) in
             placemarks?.forEach({
                 print("\nPlacemark:")
-                print("\($0.point.latitude) \($0.point.longitude)")
-                print($0.osmId)
-                print($0.osmType)
-                print($0.osmKey)
-                print($0.osmValue)
-                print($0.name)
-                print($0.city)
-                print($0.state)
-                print($0.country)
+                print("Point: \t\t\($0.point.latitude),\($0.point.longitude)")
+                print("OSM ID: \t\t\($0.osmId)")
+                print("OSM Type: \t\($0.osmType)")
+                print("OSM Key: \t\($0.osmKey)")
+                print("OSM Value: \t\($0.osmValue)")
+                print("Name: \t\t\($0.name)")
+                print("Address: \t\($0.street) \($0.housenumber)")
+                print("City: \t\t\($0.postcode) \($0.city)")
+                print("State: \t\t\($0.state)")
+                print("Country: \t\($0.country)")
             })
         })
     }
