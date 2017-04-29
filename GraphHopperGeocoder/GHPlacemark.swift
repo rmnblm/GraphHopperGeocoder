@@ -1,7 +1,7 @@
 import CoreLocation
 
 open class Placemark {
-    public let point: CLLocationCoordinate2D
+    public let coordinate: CLLocationCoordinate2D
     public let osmId: Int
     public let osmType: String
     public let osmKey: String
@@ -14,8 +14,8 @@ open class Placemark {
     public let state: String
     public let country: String
 
-    internal init(_ point: CLLocationCoordinate2D, osmId: Int, osmType: String, osmKey: String, osmValue: String, name: String, housenumber: String, street: String, postcode: String, city: String, state: String, country: String) {
-        self.point = point
+    internal init(_ coordinate: CLLocationCoordinate2D, osmId: Int, osmType: String, osmKey: String, osmValue: String, name: String, housenumber: String, street: String, postcode: String, city: String, state: String, country: String) {
+        self.coordinate = coordinate
         self.osmId = osmId
         self.osmType = osmType
         self.osmKey = osmKey
@@ -30,12 +30,12 @@ open class Placemark {
     }
 
     public convenience init?(json: JSONDictionary, withOptions options: GeocodeOptions) {
-        var point = CLLocationCoordinate2D()
+        var coordinate = CLLocationCoordinate2D()
 
         if let pointJson = json["point"] as? JSONDictionary {
             if let lat = pointJson["lat"] as? CLLocationDegrees, let lng = pointJson["lng"] as? CLLocationDegrees {
-                point.latitude = lat
-                point.longitude = lng
+                coordinate.latitude = lat
+                coordinate.longitude = lng
             }
         }
 
@@ -51,6 +51,6 @@ open class Placemark {
         let state = json["state"] as? String ?? ""
         let country = json["country"] as? String ?? ""
 
-        self.init(point, osmId: osmId, osmType: osmType, osmKey: osmKey, osmValue: osmValue, name: name, housenumber: housenumber, street: street, postcode: postcode, city: city, state: state, country: country)
+        self.init(coordinate, osmId: osmId, osmType: osmType, osmKey: osmKey, osmValue: osmValue, name: name, housenumber: housenumber, street: street, postcode: postcode, city: city, state: state, country: country)
     }
 }

@@ -8,7 +8,7 @@ public enum GeocodeProvider: String {
 
 open class GeocodeOptions: NSObject {
 
-    public var point: CLLocationCoordinate2D?
+    public var coordinate: CLLocationCoordinate2D?
     public var locale = "en"
     public var debug = false
     public var provider: GeocodeProvider = .graphhopper
@@ -20,7 +20,7 @@ open class GeocodeOptions: NSObject {
             URLQueryItem(name: "provider", value: provider.rawValue)
         ]
 
-        if let point = point {
+        if let point = coordinate {
             params.append(URLQueryItem(name: "point", value: "\(point.latitude),\(point.longitude)"))
         }
 
@@ -39,21 +39,21 @@ open class ForwardGeocodeOptions: GeocodeOptions {
     public let query: String
     public var limit = 10
 
-    public init(_ query: String) {
+    public init(query: String) {
         assert(!query.isEmpty, "Specify a query.")
         self.query = query
         super.init()
     }
 
-    public init(_ query: String, point: CLLocationCoordinate2D) {
+    public init(query: String, coordinate: CLLocationCoordinate2D) {
         assert(!query.isEmpty, "Specify a query.")
         self.query = query
         super.init()
-        self.point = point
+        self.coordinate = coordinate
     }
 
-    public convenience init(_ query: String, location: CLLocation) {
-        self.init(query, point: location.coordinate)
+    public convenience init(query: String, location: CLLocation) {
+        self.init(query: query, coordinate: location.coordinate)
     }
 
     override var params: [URLQueryItem] {
@@ -74,9 +74,9 @@ open class ReverseGeocodeOptions: GeocodeOptions {
 
     public let reverse = true
 
-    public init(point: CLLocationCoordinate2D) {
+    public init(coordinate: CLLocationCoordinate2D) {
         super.init()
-        self.point = point
+        self.coordinate = coordinate
     }
 
     override var params: [URLQueryItem] {

@@ -38,8 +38,8 @@ open class Geocoder: NSObject {
         self.baseURL = baseURLComponents.url!
     }
 
-    open func calculate(_ options: GeocodeOptions, completionHandler: @escaping CompletionHandler) -> URLSessionDataTask {
-        let url = urlForCalculating(options)
+    open func geocode(_ options: GeocodeOptions, completionHandler: @escaping CompletionHandler) -> URLSessionDataTask {
+        let url = urlForGeocoding(options)
         let task = dataTask(withURL: url, completionHandler: { (json) in
             let response = options.response(json)
             completionHandler(response, nil)
@@ -93,7 +93,7 @@ open class Geocoder: NSObject {
         })
     }
 
-    open func urlForCalculating(_ options: GeocodeOptions) -> URL {
+    open func urlForGeocoding(_ options: GeocodeOptions) -> URL {
         let params = options.params + [
             URLQueryItem(name: "key", value: accessToken),
         ]

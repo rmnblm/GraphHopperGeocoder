@@ -20,25 +20,25 @@ class ViewController: UIViewController {
 
         // Forward Geocoding
         let query = "Strela Davos"
-        let forwardGeocodeOptions = ForwardGeocodeOptions(query)
+        let forwardGeocodeOptions = ForwardGeocodeOptions(query: query)
 
         let lat = CLLocationDegrees(exactly: 46.80907)
         let lng = CLLocationDegrees(exactly: 9.78098)
 
-//        let point = CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
+//        let coordinate = CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
 //        let forwardGeocodeOptions = ForwardGeocodeOptions(query, location: location)
 //
 //        let location = CLLocation(latitude: lat!, longitude: lng!)
 //        let forwardGeocodeOptions = ForwardGeocodeOptions(query, point: point)
 
         // Reverse Geocoding
-        let point = CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
-        let reverseGeocodeOptions = ReverseGeocodeOptions(point: point)
+        let coordinate = CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
+        let reverseGeocodeOptions = ReverseGeocodeOptions(coordinate: coordinate)
 
-        _ = geocoder.calculate(forwardGeocodeOptions, completionHandler: { (placemarks, error) in
+        _ = geocoder.geocode(forwardGeocodeOptions, completionHandler: { (placemarks, error) in
             placemarks?.forEach({
                 print("\nPlacemark:")
-                print("Point: \t\t\($0.point.latitude),\($0.point.longitude)")
+                print("Point: \t\t\($0.coordinate.latitude),\($0.coordinate.longitude)")
                 print("OSM ID: \t\t\($0.osmId)")
                 print("OSM Type: \t\($0.osmType)")
                 print("OSM Key: \t\($0.osmKey)")
