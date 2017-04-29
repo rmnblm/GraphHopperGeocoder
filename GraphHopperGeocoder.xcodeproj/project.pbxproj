@@ -16,7 +16,7 @@
 		4A930B8D1EB4A475007F9A5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A930B8B1EB4A475007F9A5B /* LaunchScreen.storyboard */; };
 		4A930B931EB4A4A5007F9A5B /* GHGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A930B921EB4A4A5007F9A5B /* GHGeocoder.swift */; };
 		4A930B951EB4A543007F9A5B /* GHGeocodeOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A930B941EB4A543007F9A5B /* GHGeocodeOptions.swift */; };
-		4A930B971EB4A867007F9A5B /* GHGeocodePlacemark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A930B961EB4A867007F9A5B /* GHGeocodePlacemark.swift */; };
+		4A930B971EB4A867007F9A5B /* GHPlacemark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A930B961EB4A867007F9A5B /* GHPlacemark.swift */; };
 		4A930B9E1EB4B8AE007F9A5B /* GraphHopperGeocoder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A930B621EB4A414007F9A5B /* GraphHopperGeocoder.framework */; };
 		4A930B9F1EB4B8AE007F9A5B /* GraphHopperGeocoder.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A930B621EB4A414007F9A5B /* GraphHopperGeocoder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -67,7 +67,7 @@
 		4A930B8E1EB4A475007F9A5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A930B921EB4A4A5007F9A5B /* GHGeocoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GHGeocoder.swift; sourceTree = "<group>"; };
 		4A930B941EB4A543007F9A5B /* GHGeocodeOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GHGeocodeOptions.swift; sourceTree = "<group>"; };
-		4A930B961EB4A867007F9A5B /* GHGeocodePlacemark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GHGeocodePlacemark.swift; sourceTree = "<group>"; };
+		4A930B961EB4A867007F9A5B /* GHPlacemark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GHPlacemark.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +123,7 @@
 				4A930B661EB4A414007F9A5B /* Info.plist */,
 				4A930B921EB4A4A5007F9A5B /* GHGeocoder.swift */,
 				4A930B941EB4A543007F9A5B /* GHGeocodeOptions.swift */,
-				4A930B961EB4A867007F9A5B /* GHGeocodePlacemark.swift */,
+				4A930B961EB4A867007F9A5B /* GHPlacemark.swift */,
 			);
 			path = GraphHopperGeocoder;
 			sourceTree = "<group>";
@@ -300,7 +300,7 @@
 			files = (
 				4A930B931EB4A4A5007F9A5B /* GHGeocoder.swift in Sources */,
 				4A930B951EB4A543007F9A5B /* GHGeocodeOptions.swift in Sources */,
-				4A930B971EB4A867007F9A5B /* GHGeocodePlacemark.swift in Sources */,
+				4A930B971EB4A867007F9A5B /* GHPlacemark.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,6 +571,7 @@
 				4A930B781EB4A415007F9A5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4A930B791EB4A415007F9A5B /* Build configuration list for PBXNativeTarget "GraphHopperGeocoderTests" */ = {
 			isa = XCConfigurationList;
@@ -579,6 +580,7 @@
 				4A930B7B1EB4A415007F9A5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4A930B8F1EB4A475007F9A5B /* Build configuration list for PBXNativeTarget "GraphHopperGeocoderExample" */ = {
 			isa = XCConfigurationList;
@@ -587,6 +589,7 @@
 				4A930B911EB4A475007F9A5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
