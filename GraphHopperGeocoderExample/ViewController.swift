@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 import GraphHopperGeocoder
 
 class ViewController: UIViewController {
@@ -17,7 +18,15 @@ class ViewController: UIViewController {
         let accessToken = "GRAPHHOPPER_ACCESS_TOKEN"
         let geocoder = Geocoder(accessToken: accessToken)
         let query = "Berlin"
-        let options = GeocodeOptions(query)
+        let lat = CLLocationDegrees(exactly: 45.93272)
+        let lng = CLLocationDegrees(exactly: 11.58803)
+        let location = CLLocation(latitude: lat!, longitude: lng!)
+        let point = CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
+
+        var options = GeocodeOptions(query)
+        options = GeocodeOptions("Berlin", point: point)
+        options = GeocodeOptions("Berlin", location: location)
+
         _ = geocoder.calculate(options, completionHandler: { (placemarks, error) in
             placemarks?.forEach({
                 print("\($0.point.latitude) \($0.point.longitude)")
