@@ -19,8 +19,10 @@ open class Placemark {
         var point = CLLocationCoordinate2D()
 
         if let pointJson = json["point"] as? JSONDictionary {
-            point.latitude = pointJson["lat"] as! CLLocationDegrees
-            point.longitude = pointJson["lng"] as! CLLocationDegrees
+            if let lat = pointJson["lat"] as? CLLocationDegrees, let lng = pointJson["lng"] as? CLLocationDegrees {
+                point.latitude = lat
+                point.longitude = lng
+            }
         }
 
         let osmId = json["osmId"] as? String ?? ""
