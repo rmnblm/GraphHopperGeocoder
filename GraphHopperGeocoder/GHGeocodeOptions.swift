@@ -79,6 +79,10 @@ open class ReverseGeocodeOptions: GeocodeOptions {
         self.coordinate = coordinate
     }
 
+    public convenience init(location: CLLocation) {
+        self.init(coordinate: location.coordinate)
+    }
+
     override var params: [URLQueryItem] {
         var params = super.params
         
