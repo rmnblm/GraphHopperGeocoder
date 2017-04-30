@@ -29,7 +29,7 @@ open class Placemark {
         self.country = country
     }
 
-    public convenience init?(json: JSONDictionary, withOptions options: GeocodeOptions) {
+    public convenience init?(json: JSONDictionary) {
         var coordinate = CLLocationCoordinate2D()
 
         if let pointJson = json["point"] as? JSONDictionary {
