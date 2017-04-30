@@ -1,4 +1,5 @@
 import CoreLocation
+import Contacts
 
 open class Placemark {
     public let coordinate: CLLocationCoordinate2D
@@ -13,8 +14,9 @@ open class Placemark {
     public let city: String
     public let state: String
     public let country: String
+    public var postalAddress: CNPostalAddress?
 
-    internal init(_ coordinate: CLLocationCoordinate2D, osmId: Int, osmType: String, osmKey: String, osmValue: String, name: String, housenumber: String, street: String, postcode: String, city: String, state: String, country: String) {
+    internal init(_ coordinate: CLLocationCoordinate2D, osmId: Int, osmType: String, osmKey: String, osmValue: String, name: String, housenumber: String, street: String, postcode: String, city: String, state: String, country: String, postalAddress: CNPostalAddress) {
         self.coordinate = coordinate
         self.osmId = osmId
         self.osmType = osmType
@@ -27,9 +29,10 @@ open class Placemark {
         self.city = city
         self.state = state
         self.country = country
+        self.postalAddress = postalAddress
     }
 
-    public convenience init?(json: JSONDictionary, withOptions options: GeocodeOptions) {
+    public convenience init?(json: JSONDictionary) {
         var coordinate = CLLocationCoordinate2D()
 
         if let pointJson = json["point"] as? JSONDictionary {
@@ -51,6 +54,36 @@ open class Placemark {
         let state = json["state"] as? String ?? ""
         let country = json["country"] as? String ?? ""
 
-        self.init(coordinate, osmId: osmId, osmType: osmType, osmKey: osmKey, osmValue: osmValue, name: name, housenumber: housenumber, street: street, postcode: postcode, city: city, state: state, country: country)
+        var postalAddress: CNPostalAddress? {
+            let postalAddress = CNMutablePostalAddress()
+
+            if let street = json["street"] as? String {
+                postalAddress.street = street
+
+                if let housenumber = json["housenumber"] as? String {
+                    postalAddress.street = "\(street) \(housenumber)"
+                }
+            }
+
+            if let city = json["city"] as? String {
+                postalAddress.city = city
+            }
+
+            if let state = json["state"] as? String {
+                postalAddress.state = state
+            }
+
+            if let postalCode = json["postcode"] as? String {
+                postalAddress.postalCode = postalCode
+            }
+
+            if let country = json["country"] as? String {
+                postalAddress.country = country
+            }
+
+            return postalAddress
+        }
+
+        self.init(coordinate, osmId: osmId, osmType: osmType, osmKey: osmKey, osmValue: osmValue, name: name, housenumber: housenumber, street: street, postcode: postcode, city: city, state: state, country: country, postalAddress: postalAddress!)
     }
 }
