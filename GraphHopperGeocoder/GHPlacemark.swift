@@ -9,12 +9,12 @@ open class Placemark {
     public let name: String
     public let housenumber: String
     public let street: String
-    public let postcode: String
+    public let postalCode: String
     public let city: String
     public let state: String
     public let country: String
 
-    internal init(_ coordinate: CLLocationCoordinate2D, osmId: Int, osmType: String, osmKey: String, osmValue: String, name: String, housenumber: String, street: String, postcode: String, city: String, state: String, country: String) {
+    internal init(_ coordinate: CLLocationCoordinate2D, osmId: Int, osmType: String, osmKey: String, osmValue: String, name: String, housenumber: String, street: String, postalCode: String, city: String, state: String, country: String) {
         self.coordinate = coordinate
         self.osmId = osmId
         self.osmType = osmType
@@ -23,7 +23,7 @@ open class Placemark {
         self.name = name
         self.housenumber = housenumber
         self.street = street
-        self.postcode = postcode
+        self.postalCode = postalCode
         self.city = city
         self.state = state
         self.country = country
@@ -46,11 +46,11 @@ open class Placemark {
         let name = json["name"] as? String ?? ""
         let housenumber = json["housenumber"] as? String ?? ""
         let street = json["street"] as? String ?? ""
-        let postcode = json["postcode"] as? String ?? ""
+        let postalCode = json["postcode"] as? String ?? ""
         let city = json["city"] as? String ?? ""
         let state = json["state"] as? String ?? ""
         let country = json["country"] as? String ?? ""
 
-        self.init(coordinate, osmId: osmId, osmType: osmType, osmKey: osmKey, osmValue: osmValue, name: name, housenumber: housenumber, street: street, postcode: postcode, city: city, state: state, country: country)
+        self.init(coordinate, osmId: osmId, osmType: osmType, osmKey: osmKey, osmValue: osmValue, name: name, housenumber: housenumber, street: street, postalCode: postalCode, city: city, state: state, country: country)
     }
 }

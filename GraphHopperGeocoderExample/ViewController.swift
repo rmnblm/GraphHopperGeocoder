@@ -45,7 +45,7 @@ class ViewController: UIViewController {
                 print("OSM Value: \t\($0.osmValue)")
                 print("Name: \t\t\($0.name)")
                 print("Address: \t\($0.street) \($0.housenumber)")
-                print("City: \t\t\($0.postcode) \($0.city)")
+                print("City: \t\t\($0.postalCode) \($0.city)")
                 print("State: \t\t\($0.state)")
                 print("Country: \t\($0.country)")
             })
