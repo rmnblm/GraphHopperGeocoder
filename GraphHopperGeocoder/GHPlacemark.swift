@@ -3,33 +3,21 @@ import Contacts
 
 open class Placemark {
     public let coordinate: CLLocationCoordinate2D
-    public let osmId: Int
-    public let osmType: String
-    public let osmKey: String
-    public let osmValue: String
-    public let name: String
-    public let housenumber: String
-    public let street: String
-    public let postcode: String
-    public let city: String
-    public let state: String
-    public let country: String
+    public var osmId: Int?
+    public var osmType: String?
+    public var osmKey: String?
+    public var osmValue: String?
+    public var name: String?
+    public var housenumber: String?
+    public var street: String?
+    public var postalCode: String?
+    public var city: String?
+    public var state: String?
+    public var country: String?
     public var postalAddress: CNPostalAddress?
 
-    internal init(_ coordinate: CLLocationCoordinate2D, osmId: Int, osmType: String, osmKey: String, osmValue: String, name: String, housenumber: String, street: String, postcode: String, city: String, state: String, country: String, postalAddress: CNPostalAddress) {
+    internal init(_ coordinate: CLLocationCoordinate2D) {
         self.coordinate = coordinate
-        self.osmId = osmId
-        self.osmType = osmType
-        self.osmKey = osmKey
-        self.osmValue = osmValue
-        self.name = name
-        self.housenumber = housenumber
-        self.street = street
-        self.postcode = postcode
-        self.city = city
-        self.state = state
-        self.country = country
-        self.postalAddress = postalAddress
     }
 
     public convenience init?(json: JSONDictionary) {
@@ -42,17 +30,19 @@ open class Placemark {
             }
         }
 
-        let osmId = json["osmId"] as? Int ?? 0
-        let osmType = json["osmType"] as? String ?? ""
-        let osmKey = json["osmKey"] as? String ?? ""
-        let osmValue = json["osmValue"] as? String ?? ""
-        let name = json["name"] as? String ?? ""
-        let housenumber = json["housenumber"] as? String ?? ""
-        let street = json["street"] as? String ?? ""
-        let postcode = json["postcode"] as? String ?? ""
-        let city = json["city"] as? String ?? ""
-        let state = json["state"] as? String ?? ""
-        let country = json["country"] as? String ?? ""
+        self.init(coordinate)
+
+        osmId = json["osm_id"] as? Int
+        osmType = json["osm_type"] as? String
+        osmKey = json["osm_key"] as? String
+        osmValue = json["osm_value"] as? String
+        name = json["name"] as? String
+        housenumber = json["housenumber"] as? String
+        street = json["street"] as? String
+        postalCode = json["postcode"] as? String
+        city = json["city"] as? String
+        state = json["state"] as? String
+        country = json["country"] as? String
 
         var postalAddress: CNPostalAddress? {
             let postalAddress = CNMutablePostalAddress()
@@ -83,7 +73,5 @@ open class Placemark {
 
             return postalAddress
         }
-
-        self.init(coordinate, osmId: osmId, osmType: osmType, osmKey: osmKey, osmValue: osmValue, name: name, housenumber: housenumber, street: street, postcode: postcode, city: city, state: state, country: country, postalAddress: postalAddress!)
     }
 }
