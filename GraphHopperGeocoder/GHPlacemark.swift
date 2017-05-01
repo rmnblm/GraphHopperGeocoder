@@ -41,6 +41,17 @@ open class Placemark {
         return json["osm_value"] as? String
     }
 
+    open var region: [CLLocationCoordinate2D]? {
+        guard let boundingBox = json["extent"] as? [CLLocationDegrees] else {
+            return nil
+        }
+
+        assert(boundingBox.count == 4, "Region should have coordinates for north-west and south-east")
+        let northWest = CLLocationCoordinate2D(json: Array(boundingBox.prefix(2)))
+        let southEast = CLLocationCoordinate2D(json: Array(boundingBox.suffix(2)))
+        return [northWest, southEast]
+    }
+
     open var name: String? {
         return json["name"] as? String
     }
@@ -97,5 +108,12 @@ open class Placemark {
         }
 
         return postalAddress
+    }
+}
+
+extension CLLocationCoordinate2D {
+    internal init(json array: [CLLocationDegrees]) {
+        assert(array.count == 2, "Coordinate must have latitude and longitude")
+        self.init(latitude: array[1], longitude: array[0])
     }
 }
