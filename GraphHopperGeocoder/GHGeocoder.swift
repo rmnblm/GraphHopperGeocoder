@@ -11,7 +11,6 @@ enum NetworkError: Error {
     case InvalidParameters
     case LimitExceeded
     case InternalServer
-    case UnsupportedVehicles
     case Unknown
 }
 
@@ -26,7 +25,7 @@ open class Geocoder: NSObject {
 
     public init(accessToken: String?, apiVersion: String? = nil) {
         guard let token = accessToken ?? defaultAccessToken else {
-            fatalError("You must provide an access token in order to use the GraphHopper Routing API.")
+            fatalError("You must provide an access token in order to use the GraphHopper Geocoding API.")
         }
 
         self.accessToken = token
@@ -110,7 +109,6 @@ open class Geocoder: NSObject {
         case 413: return NetworkError.InvalidParameters
         case 429: return NetworkError.LimitExceeded
         case 500: return NetworkError.InternalServer
-        case 501: return NetworkError.UnsupportedVehicles
         default: return NetworkError.Unknown
         }
     }

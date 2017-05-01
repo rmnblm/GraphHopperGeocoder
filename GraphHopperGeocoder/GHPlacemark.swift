@@ -83,31 +83,11 @@ open class Placemark {
 
     open var postalAddress: CNPostalAddress? {
         let postalAddress = CNMutablePostalAddress()
-
-        if let street = json["street"] as? String {
-            postalAddress.street = street
-
-            if let housenumber = json["housenumber"] as? String {
-                postalAddress.street = "\(street) \(housenumber)"
-            }
-        }
-
-        if let city = json["city"] as? String {
-            postalAddress.city = city
-        }
-
-        if let state = json["state"] as? String {
-            postalAddress.state = state
-        }
-
-        if let postalCode = json["postcode"] as? String {
-            postalAddress.postalCode = postalCode
-        }
-
-        if let country = json["country"] as? String {
-            postalAddress.country = country
-        }
-
+        postalAddress.street = "\(street ?? "")\(housenumber == nil ? "" : " \(housenumber!)")"
+        postalAddress.city = city ?? ""
+        postalAddress.state = state ?? ""
+        postalAddress.postalCode = postalCode ?? ""
+        postalAddress.country = country ?? ""
         return postalAddress
     }
 }

@@ -8,23 +8,16 @@ public enum GeocodeProvider: String {
 
 open class GeocodeOptions: NSObject {
 
-    public var coordinate: CLLocationCoordinate2D?
     public var locale = "en"
     public var debug = false
     public var provider: GeocodeProvider = .graphhopper
 
     internal var params: [URLQueryItem] {
-        var params: [URLQueryItem] = [
+        return [
             URLQueryItem(name: "locale", value: locale),
             URLQueryItem(name: "debug", value: String(debug)),
             URLQueryItem(name: "provider", value: provider.rawValue)
         ]
-
-        if let point = coordinate {
-            params.append(URLQueryItem(name: "point", value: "\(point.latitude),\(point.longitude)"))
-        }
-
-        return params
     }
 
     internal func response(_ json: JSONDictionary) -> ([Placemark]?) {
@@ -38,18 +31,13 @@ open class ForwardGeocodeOptions: GeocodeOptions {
 
     public let query: String
     public var limit = 10
+    public var coordinate: CLLocationCoordinate2D?
 
-    public init(query: String) {
+    public init(query: String, coordinate: CLLocationCoordinate2D? = nil) {
         assert(!query.isEmpty, "Specify a query.")
         self.query = query
-        super.init()
-    }
-
-    public init(query: String, coordinate: CLLocationCoordinate2D) {
-        assert(!query.isEmpty, "Specify a query.")
-        self.query = query
-        super.init()
         self.coordinate = coordinate
+        super.init()
     }
 
     public convenience init(query: String, location: CLLocation) {
@@ -59,10 +47,14 @@ open class ForwardGeocodeOptions: GeocodeOptions {
     override var params: [URLQueryItem] {
         var params = super.params
 
-        let forwardGeocodingParams: [URLQueryItem] = [
+        var forwardGeocodingParams: [URLQueryItem] = [
             URLQueryItem(name: "q", value: String(query)),
             URLQueryItem(name: "limit", value: String(limit)),
         ]
+
+        if let point = coordinate {
+            forwardGeocodingParams.append(URLQueryItem(name: "point", value: "\(point.latitude),\(point.longitude)"))
+        }
 
         params.append(contentsOf: forwardGeocodingParams)
 
@@ -72,11 +64,12 @@ open class ForwardGeocodeOptions: GeocodeOptions {
 
 open class ReverseGeocodeOptions: GeocodeOptions {
 
+    public let coordinate: CLLocationCoordinate2D
     public let reverse = true
 
     public init(coordinate: CLLocationCoordinate2D) {
-        super.init()
         self.coordinate = coordinate
+        super.init()
     }
 
     public convenience init(location: CLLocation) {
@@ -88,6 +81,7 @@ open class ReverseGeocodeOptions: GeocodeOptions {
         
         let reverseGeocodingParams: [URLQueryItem] = [
             URLQueryItem(name: "reverse", value: String(reverse)),
+            URLQueryItem(name: "point", value: "\(coordinate.latitude),\(coordinate.longitude)")
         ]
 
         params.append(contentsOf: reverseGeocodingParams)
