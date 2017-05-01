@@ -9,16 +9,9 @@
 /* Begin PBXBuildFile section */
 		4A930B6C1EB4A415007F9A5B /* GraphHopperGeocoder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A930B621EB4A414007F9A5B /* GraphHopperGeocoder.framework */; };
 		4A930B711EB4A415007F9A5B /* GraphHopperGeocoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A930B701EB4A415007F9A5B /* GraphHopperGeocoderTests.swift */; };
-		4A930B831EB4A475007F9A5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A930B821EB4A475007F9A5B /* AppDelegate.swift */; };
-		4A930B851EB4A475007F9A5B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A930B841EB4A475007F9A5B /* ViewController.swift */; };
-		4A930B881EB4A475007F9A5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A930B861EB4A475007F9A5B /* Main.storyboard */; };
-		4A930B8A1EB4A475007F9A5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A930B891EB4A475007F9A5B /* Assets.xcassets */; };
-		4A930B8D1EB4A475007F9A5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A930B8B1EB4A475007F9A5B /* LaunchScreen.storyboard */; };
 		4A930B931EB4A4A5007F9A5B /* GHGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A930B921EB4A4A5007F9A5B /* GHGeocoder.swift */; };
 		4A930B951EB4A543007F9A5B /* GHGeocodeOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A930B941EB4A543007F9A5B /* GHGeocodeOptions.swift */; };
 		4A930B971EB4A867007F9A5B /* GHPlacemark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A930B961EB4A867007F9A5B /* GHPlacemark.swift */; };
-		4A930B9E1EB4B8AE007F9A5B /* GraphHopperGeocoder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A930B621EB4A414007F9A5B /* GraphHopperGeocoder.framework */; };
-		4A930B9F1EB4B8AE007F9A5B /* GraphHopperGeocoder.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A930B621EB4A414007F9A5B /* GraphHopperGeocoder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,42 +22,15 @@
 			remoteGlobalIDString = 4A930B611EB4A414007F9A5B;
 			remoteInfo = GraphHopperGeocoder;
 		};
-		4A930BA01EB4B8AE007F9A5B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A930B591EB4A414007F9A5B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4A930B611EB4A414007F9A5B;
-			remoteInfo = GraphHopperGeocoder;
-		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		4A930BA21EB4B8AE007F9A5B /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				4A930B9F1EB4B8AE007F9A5B /* GraphHopperGeocoder.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
+		3039D3B91EB758D700B8703F /* GraphHopperGeocoder.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GraphHopperGeocoder.playground; sourceTree = "<group>"; };
 		4A930B621EB4A414007F9A5B /* GraphHopperGeocoder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GraphHopperGeocoder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A930B661EB4A414007F9A5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A930B6B1EB4A415007F9A5B /* GraphHopperGeocoderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GraphHopperGeocoderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A930B701EB4A415007F9A5B /* GraphHopperGeocoderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphHopperGeocoderTests.swift; sourceTree = "<group>"; };
 		4A930B721EB4A415007F9A5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4A930B801EB4A475007F9A5B /* GraphHopperGeocoderExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraphHopperGeocoderExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4A930B821EB4A475007F9A5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4A930B841EB4A475007F9A5B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4A930B871EB4A475007F9A5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4A930B891EB4A475007F9A5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4A930B8C1EB4A475007F9A5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		4A930B8E1EB4A475007F9A5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A930B921EB4A4A5007F9A5B /* GHGeocoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GHGeocoder.swift; sourceTree = "<group>"; };
 		4A930B941EB4A543007F9A5B /* GHGeocodeOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GHGeocodeOptions.swift; sourceTree = "<group>"; };
 		4A930B961EB4A867007F9A5B /* GHPlacemark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GHPlacemark.swift; sourceTree = "<group>"; };
@@ -86,23 +52,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4A930B7D1EB4A475007F9A5B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4A930B9E1EB4B8AE007F9A5B /* GraphHopperGeocoder.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		4A930B581EB4A414007F9A5B = {
 			isa = PBXGroup;
 			children = (
+				3039D3B91EB758D700B8703F /* GraphHopperGeocoder.playground */,
 				4A930B641EB4A414007F9A5B /* GraphHopperGeocoder */,
 				4A930B6F1EB4A415007F9A5B /* GraphHopperGeocoderTests */,
-				4A930B811EB4A475007F9A5B /* GraphHopperGeocoderExample */,
 				4A930B631EB4A414007F9A5B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,7 +70,6 @@
 			children = (
 				4A930B621EB4A414007F9A5B /* GraphHopperGeocoder.framework */,
 				4A930B6B1EB4A415007F9A5B /* GraphHopperGeocoderTests.xctest */,
-				4A930B801EB4A475007F9A5B /* GraphHopperGeocoderExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,19 +92,6 @@
 				4A930B721EB4A415007F9A5B /* Info.plist */,
 			);
 			path = GraphHopperGeocoderTests;
-			sourceTree = "<group>";
-		};
-		4A930B811EB4A475007F9A5B /* GraphHopperGeocoderExample */ = {
-			isa = PBXGroup;
-			children = (
-				4A930B821EB4A475007F9A5B /* AppDelegate.swift */,
-				4A930B841EB4A475007F9A5B /* ViewController.swift */,
-				4A930B861EB4A475007F9A5B /* Main.storyboard */,
-				4A930B891EB4A475007F9A5B /* Assets.xcassets */,
-				4A930B8B1EB4A475007F9A5B /* LaunchScreen.storyboard */,
-				4A930B8E1EB4A475007F9A5B /* Info.plist */,
-			);
-			path = GraphHopperGeocoderExample;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,25 +143,6 @@
 			productReference = 4A930B6B1EB4A415007F9A5B /* GraphHopperGeocoderTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4A930B7F1EB4A475007F9A5B /* GraphHopperGeocoderExample */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4A930B8F1EB4A475007F9A5B /* Build configuration list for PBXNativeTarget "GraphHopperGeocoderExample" */;
-			buildPhases = (
-				4A930B7C1EB4A475007F9A5B /* Sources */,
-				4A930B7D1EB4A475007F9A5B /* Frameworks */,
-				4A930B7E1EB4A475007F9A5B /* Resources */,
-				4A930BA21EB4B8AE007F9A5B /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4A930BA11EB4B8AE007F9A5B /* PBXTargetDependency */,
-			);
-			name = GraphHopperGeocoderExample;
-			productName = GraphHopperGeocoderExample;
-			productReference = 4A930B801EB4A475007F9A5B /* GraphHopperGeocoderExample.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -239,11 +164,6 @@
 						DevelopmentTeam = 988JJ44N5G;
 						ProvisioningStyle = Automatic;
 					};
-					4A930B7F1EB4A475007F9A5B = {
-						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 988JJ44N5G;
-						ProvisioningStyle = Automatic;
-					};
 				};
 			};
 			buildConfigurationList = 4A930B5C1EB4A414007F9A5B /* Build configuration list for PBXProject "GraphHopperGeocoder" */;
@@ -261,7 +181,6 @@
 			targets = (
 				4A930B611EB4A414007F9A5B /* GraphHopperGeocoder */,
 				4A930B6A1EB4A415007F9A5B /* GraphHopperGeocoderTests */,
-				4A930B7F1EB4A475007F9A5B /* GraphHopperGeocoderExample */,
 			);
 		};
 /* End PBXProject section */
@@ -278,16 +197,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4A930B7E1EB4A475007F9A5B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4A930B8D1EB4A475007F9A5B /* LaunchScreen.storyboard in Resources */,
-				4A930B8A1EB4A475007F9A5B /* Assets.xcassets in Resources */,
-				4A930B881EB4A475007F9A5B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,15 +221,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4A930B7C1EB4A475007F9A5B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4A930B851EB4A475007F9A5B /* ViewController.swift in Sources */,
-				4A930B831EB4A475007F9A5B /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -329,31 +229,7 @@
 			target = 4A930B611EB4A414007F9A5B /* GraphHopperGeocoder */;
 			targetProxy = 4A930B6D1EB4A415007F9A5B /* PBXContainerItemProxy */;
 		};
-		4A930BA11EB4B8AE007F9A5B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4A930B611EB4A414007F9A5B /* GraphHopperGeocoder */;
-			targetProxy = 4A930BA01EB4B8AE007F9A5B /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		4A930B861EB4A475007F9A5B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4A930B871EB4A475007F9A5B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		4A930B8B1EB4A475007F9A5B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4A930B8C1EB4A475007F9A5B /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		4A930B741EB4A415007F9A5B /* Debug */ = {
@@ -524,34 +400,6 @@
 			};
 			name = Release;
 		};
-		4A930B901EB4A475007F9A5B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 988JJ44N5G;
-				INFOPLIST_FILE = GraphHopperGeocoderExample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ch.iphilgood.GraphHopperGeocoderExample;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		4A930B911EB4A475007F9A5B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 988JJ44N5G;
-				INFOPLIST_FILE = GraphHopperGeocoderExample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ch.iphilgood.GraphHopperGeocoderExample;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -578,15 +426,6 @@
 			buildConfigurations = (
 				4A930B7A1EB4A415007F9A5B /* Debug */,
 				4A930B7B1EB4A415007F9A5B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4A930B8F1EB4A475007F9A5B /* Build configuration list for PBXNativeTarget "GraphHopperGeocoderExample" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4A930B901EB4A475007F9A5B /* Debug */,
-				4A930B911EB4A475007F9A5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
