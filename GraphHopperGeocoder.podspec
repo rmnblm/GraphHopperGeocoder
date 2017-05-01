@@ -6,6 +6,6 @@ Pod::Spec.new do |s|
   s.summary = 'The GraphHopper Geocoding API wrapped in an easy-to-use Swift framework. '
   s.authors = { 'rmnblm' => 'rmnblm@gmail.com', 'iphilgood' => 'phil.schilter@gmail.com' }
   s.source = { git: 'https://github.com/rmnblm/GraphHopperGeocoder.git', tag: s.version }
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   s.source_files = 'GraphHopperGeocoder/*.swift'
 end

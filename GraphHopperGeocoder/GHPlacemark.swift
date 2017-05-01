@@ -1,35 +1,19 @@
 import CoreLocation
+import Contacts
 
 open class Placemark {
-    public let coordinate: CLLocationCoordinate2D
-    public let osmId: Int
-    public let osmType: String
-    public let osmKey: String
-    public let osmValue: String
-    public let name: String
-    public let housenumber: String
-    public let street: String
-    public let postalCode: String
-    public let city: String
-    public let state: String
-    public let country: String
 
-    internal init(_ coordinate: CLLocationCoordinate2D, osmId: Int, osmType: String, osmKey: String, osmValue: String, name: String, housenumber: String, street: String, postalCode: String, city: String, state: String, country: String) {
-        self.coordinate = coordinate
-        self.osmId = osmId
-        self.osmType = osmType
-        self.osmKey = osmKey
-        self.osmValue = osmValue
-        self.name = name
-        self.housenumber = housenumber
-        self.street = street
-        self.postalCode = postalCode
-        self.city = city
-        self.state = state
-        self.country = country
+    fileprivate let json: JSONDictionary
+
+    internal init(json: JSONDictionary) {
+        self.json = json
     }
 
-    public convenience init?(json: JSONDictionary) {
+    public convenience init(placemark: Placemark) {
+        self.init(json: placemark.json)
+    }
+
+    open var coordinate: CLLocationCoordinate2D {
         var coordinate = CLLocationCoordinate2D()
 
         if let pointJson = json["point"] as? JSONDictionary {
@@ -39,18 +23,98 @@ open class Placemark {
             }
         }
 
-        let osmId = json["osmId"] as? Int ?? 0
-        let osmType = json["osmType"] as? String ?? ""
-        let osmKey = json["osmKey"] as? String ?? ""
-        let osmValue = json["osmValue"] as? String ?? ""
-        let name = json["name"] as? String ?? ""
-        let housenumber = json["housenumber"] as? String ?? ""
-        let street = json["street"] as? String ?? ""
-        let postalCode = json["postcode"] as? String ?? ""
-        let city = json["city"] as? String ?? ""
-        let state = json["state"] as? String ?? ""
-        let country = json["country"] as? String ?? ""
+        return coordinate
+    }
 
-        self.init(coordinate, osmId: osmId, osmType: osmType, osmKey: osmKey, osmValue: osmValue, name: name, housenumber: housenumber, street: street, postalCode: postalCode, city: city, state: state, country: country)
+    open var osmId: Int? {
+        return json["osm_id"] as? Int
+    }
+
+    open var osmType: String? {
+        return json["osm_type"] as? String
+    }
+
+    open var osmKey: String? {
+        return json["osm_key"] as? String
+    }
+
+    open var osmValue: String? {
+        return json["osm_value"] as? String
+    }
+
+    open var region: [CLLocationCoordinate2D]? {
+        guard let boundingBox = json["extent"] as? [CLLocationDegrees] else {
+            return nil
+        }
+
+        assert(boundingBox.count == 4, "Region should have coordinates for north-west and south-east")
+        let northWest = CLLocationCoordinate2D(json: Array(boundingBox.prefix(2)))
+        let southEast = CLLocationCoordinate2D(json: Array(boundingBox.suffix(2)))
+        return [northWest, southEast]
+    }
+
+    open var name: String? {
+        return json["name"] as? String
+    }
+
+    open var housenumber: String? {
+        return json["housenumber"] as? String
+    }
+
+    open var street: String? {
+        return json["street"] as? String
+    }
+
+    open var postalCode: String? {
+        return json["postcode"] as? String
+    }
+
+    open var city: String? {
+        return json["city"] as? String
+    }
+
+    open var state: String? {
+        return json["state"] as? String
+    }
+
+    open var country: String? {
+        return json["country"] as? String
+    }
+
+    open var postalAddress: CNPostalAddress? {
+        let postalAddress = CNMutablePostalAddress()
+
+        if let street = json["street"] as? String {
+            postalAddress.street = street
+
+            if let housenumber = json["housenumber"] as? String {
+                postalAddress.street = "\(street) \(housenumber)"
+            }
+        }
+
+        if let city = json["city"] as? String {
+            postalAddress.city = city
+        }
+
+        if let state = json["state"] as? String {
+            postalAddress.state = state
+        }
+
+        if let postalCode = json["postcode"] as? String {
+            postalAddress.postalCode = postalCode
+        }
+
+        if let country = json["country"] as? String {
+            postalAddress.country = country
+        }
+
+        return postalAddress
+    }
+}
+
+extension CLLocationCoordinate2D {
+    internal init(json array: [CLLocationDegrees]) {
+        assert(array.count == 2, "Coordinate must have latitude and longitude")
+        self.init(latitude: array[1], longitude: array[0])
     }
 }

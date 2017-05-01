@@ -19,11 +19,11 @@ class ViewController: UIViewController {
         let geocoder = Geocoder(accessToken: accessToken)
 
         // Forward Geocoding
-        let query = "Strela Davos"
+        let query = "Hotel Strela"
         let forwardGeocodeOptions = ForwardGeocodeOptions(query: query)
 
-        let lat = CLLocationDegrees(exactly: 46.80907)
-        let lng = CLLocationDegrees(exactly: 9.78098)
+//        let lat = CLLocationDegrees(exactly: 46.80907)
+//        let lng = CLLocationDegrees(exactly: 9.78098)
 
 //        let coordinate = CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
 //        let forwardGeocodeOptions = ForwardGeocodeOptions(query, location: location)
@@ -32,22 +32,25 @@ class ViewController: UIViewController {
 //        let forwardGeocodeOptions = ForwardGeocodeOptions(query, point: point)
 
         // Reverse Geocoding
-        let coordinate = CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
-        let reverseGeocodeOptions = ReverseGeocodeOptions(coordinate: coordinate)
+//        let coordinate = CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
+//        let reverseGeocodeOptions = ReverseGeocodeOptions(coordinate: coordinate)
 
         _ = geocoder.geocode(forwardGeocodeOptions, completionHandler: { (placemarks, error) in
             placemarks?.forEach({
-                print("\nPlacemark:")
+                print("\n")
                 print("Point: \t\t\($0.coordinate.latitude),\($0.coordinate.longitude)")
-                print("OSM ID: \t\t\($0.osmId)")
-                print("OSM Type: \t\($0.osmType)")
-                print("OSM Key: \t\($0.osmKey)")
-                print("OSM Value: \t\($0.osmValue)")
-                print("Name: \t\t\($0.name)")
-                print("Address: \t\($0.street) \($0.housenumber)")
-                print("City: \t\t\($0.postalCode) \($0.city)")
-                print("State: \t\t\($0.state)")
-                print("Country: \t\($0.country)")
+                print("OSM ID: \t\t\($0.osmId ?? 0)")
+                print("OSM Type: \t\($0.osmType ?? "")")
+                print("OSM Key: \t\($0.osmKey ?? "")")
+                print("OSM Value: \t\($0.osmValue ?? "")")
+                print("Name: \t\t\($0.name ?? "")")
+                print("Address: \t\($0.postalAddress?.street ?? "")")
+                print("City: \t\t\($0.postalAddress?.postalCode ?? "") \($0.postalAddress?.city ?? "")")
+                print("State: \t\t\($0.postalAddress?.state ?? "")")
+                print("Country: \t\($0.postalAddress?.country ?? "")")
+                if let region = $0.region {
+                    print("Region: \t\tNorthWest: \(region[0].latitude) \(region[0].longitude) \tSouthEast: \(region[1].latitude) \(region[1].longitude)")
+                }
             })
         })
     }
