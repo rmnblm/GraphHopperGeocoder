@@ -29,7 +29,7 @@ open class GeocodeOptions: NSObject {
 
     internal func response(_ json: JSONDictionary) -> ([Placemark]?) {
         return (json["hits"] as? [JSONDictionary])?.flatMap({ jsonPath in
-            return Placemark(json: jsonPath, withOptions: self)
+            return Placemark(json: jsonPath)
         })
     }
 }
