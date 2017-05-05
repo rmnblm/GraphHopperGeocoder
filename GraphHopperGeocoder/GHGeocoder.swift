@@ -7,7 +7,6 @@ let defaultAccessToken = Bundle.main.object(forInfoDictionaryKey: "GraphHopperAc
 let defaultApiVersion = "1"
 
 open class Geocoder: NSObject {
-
     public typealias CompletionHandler = (_ placemark: [Placemark]?, _ error: Error?) -> Void
 
     open static let shared = Geocoder(accessToken: nil)

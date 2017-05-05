@@ -2,7 +2,6 @@ import XCTest
 @testable import GraphHopperGeocoder
 
 class GeocoderTests: XCTestCase {
-
     override func setUp() {
         NSTimeZone.default = TimeZone(secondsFromGMT: 0)!
     }

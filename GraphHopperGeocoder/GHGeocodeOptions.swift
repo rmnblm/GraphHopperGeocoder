@@ -7,17 +7,26 @@ public enum GeocodeProvider: String {
 }
 
 open class GeocodeOptions: NSObject {
-
-    public var locale = Locale.current.languageCode ?? "en"
-    public var debug = false
-    public var provider: GeocodeProvider = .graphhopper
+    public var locale: String?
+    public var debug: Bool?
+    public var provider: GeocodeProvider?
 
     internal var params: [URLQueryItem] {
-        return [
-            URLQueryItem(name: "locale", value: locale),
-            URLQueryItem(name: "debug", value: String(debug)),
-            URLQueryItem(name: "provider", value: provider.rawValue)
-        ]
+        var params = [URLQueryItem]()
+
+        if let locale = self.locale {
+            params.append(URLQueryItem(name: "locale", value: locale))
+        }
+
+        if let debug = self.debug {
+            params.append(URLQueryItem(name: "debug", value: String(debug)))
+        }
+
+        if let provider = self.provider {
+            params.append(URLQueryItem(name: "provider", value: provider.rawValue))
+        }
+
+        return params
     }
 
     internal func response(_ json: JSONDictionary) -> ([Placemark]?) {
@@ -26,9 +35,8 @@ open class GeocodeOptions: NSObject {
 }
 
 open class ForwardGeocodeOptions: GeocodeOptions {
-
     public let query: String
-    public var limit = 10
+    public var limit: UInt?
     public var coordinate: CLLocationCoordinate2D?
 
     public init(query: String, coordinate: CLLocationCoordinate2D? = nil) {
@@ -45,23 +53,21 @@ open class ForwardGeocodeOptions: GeocodeOptions {
     override var params: [URLQueryItem] {
         var params = super.params
 
-        var forwardGeocodingParams: [URLQueryItem] = [
-            URLQueryItem(name: "q", value: String(query)),
-            URLQueryItem(name: "limit", value: String(limit)),
-        ]
+        params.append(URLQueryItem(name: "q", value: String(query)))
 
-        if let point = coordinate {
-            forwardGeocodingParams.append(URLQueryItem(name: "point", value: "\(point.latitude),\(point.longitude)"))
+        if let limit = self.limit {
+            params.append(URLQueryItem(name: "limit", value: String(limit)))
         }
 
-        params.append(contentsOf: forwardGeocodingParams)
+        if let point = coordinate {
+            params.append(URLQueryItem(name: "point", value: "\(point.latitude),\(point.longitude)"))
+        }
 
         return params
     }
 }
 
 open class ReverseGeocodeOptions: GeocodeOptions {
-
     public let coordinate: CLLocationCoordinate2D
     public let reverse = true
 
@@ -76,13 +82,9 @@ open class ReverseGeocodeOptions: GeocodeOptions {
 
     override var params: [URLQueryItem] {
         var params = super.params
-        
-        let reverseGeocodingParams: [URLQueryItem] = [
-            URLQueryItem(name: "reverse", value: String(reverse)),
-            URLQueryItem(name: "point", value: "\(coordinate.latitude),\(coordinate.longitude)")
-        ]
 
-        params.append(contentsOf: reverseGeocodingParams)
+        params.append(URLQueryItem(name: "point", value: "\(coordinate.latitude),\(coordinate.longitude)"))
+        params.append(URLQueryItem(name: "reverse", value: String(reverse)))
 
         return params
     }

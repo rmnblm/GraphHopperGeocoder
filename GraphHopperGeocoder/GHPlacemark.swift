@@ -2,7 +2,6 @@ import CoreLocation
 import Contacts
 
 open class Placemark {
-
     open let coordinate: CLLocationCoordinate2D
 
     fileprivate let json: JSONDictionary
