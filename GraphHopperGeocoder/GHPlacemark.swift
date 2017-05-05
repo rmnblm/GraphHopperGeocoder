@@ -26,17 +26,17 @@ open class Placemark {
         return self.json["osm_id"] as? Int
     }()
 
-    open var osmType: String? {
-        return json["osm_type"] as? String
-    }
+    open lazy var osmType: String? = {
+        return self.json["osm_type"] as? String
+    }()
 
-    open var osmKey: String? {
-        return json["osm_key"] as? String
-    }
+    open lazy var osmKey: String? = {
+        return self.json["osm_key"] as? String
+    }()
 
-    open var osmValue: String? {
-        return json["osm_value"] as? String
-    }
+    open lazy var osmValue: String? = {
+        return self.json["osm_value"] as? String
+    }()
 
     open lazy var region: BoundingBox? = {
         guard let boundingBox = self.json["extent"] as? [CLLocationDegrees] else {
@@ -45,43 +45,43 @@ open class Placemark {
         return BoundingBox(degrees: boundingBox)
     }()
 
-    open var name: String? {
-        return json["name"] as? String
-    }
+    open lazy var name: String? = {
+        return self.json["name"] as? String
+    }()
 
-    open var housenumber: String? {
-        return json["housenumber"] as? String
-    }
+    open lazy var housenumber: String? = {
+        return self.json["housenumber"] as? String
+    }()
 
-    open var street: String? {
-        return json["street"] as? String
-    }
+    open lazy var street: String? = {
+        return self.json["street"] as? String
+    }()
 
-    open var postalCode: String? {
-        return json["postcode"] as? String
-    }
+    open lazy var postalCode: String? = {
+        return self.json["postcode"] as? String
+    }()
 
-    open var city: String? {
-        return json["city"] as? String
-    }
+    open lazy var city: String? = {
+        return self.json["city"] as? String
+    }()
 
-    open var state: String? {
-        return json["state"] as? String
-    }
+    open lazy var state: String? = {
+        return self.json["state"] as? String
+    }()
 
-    open var country: String? {
-        return json["country"] as? String
-    }
+    open lazy var country: String? = {
+        return self.json["country"] as? String
+    }()
 
-    open var postalAddress: CNPostalAddress? {
+    open lazy var postalAddress: CNPostalAddress? = {
         let postalAddress = CNMutablePostalAddress()
-        postalAddress.street = "\(street ?? "")\(housenumber == nil ? "" : " \(housenumber!)")"
-        postalAddress.city = city ?? ""
-        postalAddress.state = state ?? ""
-        postalAddress.postalCode = postalCode ?? ""
-        postalAddress.country = country ?? ""
+        postalAddress.street = "\(self.street ?? "")\(self.housenumber == nil ? "" : " \(self.housenumber!)")"
+        postalAddress.city = self.city ?? ""
+        postalAddress.state = self.state ?? ""
+        postalAddress.postalCode = self.postalCode ?? ""
+        postalAddress.country = self.country ?? ""
         return postalAddress
-    }
+    }()
 }
 
 extension CLLocationCoordinate2D {
