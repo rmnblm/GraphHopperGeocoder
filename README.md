@@ -31,10 +31,11 @@ In order to use the framework, you'll also need a [GraphHopper Access Token](htt
 Setup the `Geocoder` class
 
 ``` swift
+import CoreLocation
 import GraphHopperGeocoder
 
 // use this
-let goecoder = Geocoder(accessToken: "YOUR ACCESS TOKEN")
+let geocoder = Geocoder(accessToken: "YOUR ACCESS TOKEN")
 // or if you have set your access token in the Info.plist
 let geocoder = Geocoder()
 ```
@@ -48,7 +49,6 @@ let options = ForwardGeocodeOptions(query: "HSR Rapperswil")
 options.limit = 3
 ```
 
-For more information, consider the [official documentation](https://graphhopper.com/api/1/docs/#geocoding-api) to learn more about the options and the result.
 
 ### Reverse geocoding options
 
@@ -79,7 +79,7 @@ let task = geocoder.geocode(options, completionHandler: { (placemarks, error) in
 
 ## More Information
 
-For more information, consider the [official documentation](https://graphhopper.com/api/1/docs/#geocoding-api) to learn more about the options and the result.
+For more information, consider reading the [official documentation](https://graphhopper.com/api/1/docs/#geocoding-api) to learn more about the options and the result.
 
 ## License
 

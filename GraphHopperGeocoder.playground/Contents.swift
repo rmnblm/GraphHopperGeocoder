@@ -10,6 +10,11 @@ var options: GeocodeOptions = ForwardGeocodeOptions(query: query)
 
 print("====== Forward Geocode Results ======\n")
 _ = geocoder.geocode(options, completionHandler: { (placemarks, error) in
+    if let error = error {
+        print(error.localizedDescription)
+        return
+    }
+
     placemarks?.forEach({
         print("\n")
         print("Point: \t\t\($0.coordinate.latitude),\($0.coordinate.longitude)")
@@ -32,6 +37,11 @@ print("\n\n")
 print("====== Reverse Geocode Results ======\n")
 options = ReverseGeocodeOptions(coordinate: CLLocationCoordinate2D(latitude: 47.222943, longitude: 8.817238649765951))
 _ = geocoder.geocode(options, completionHandler: { (placemarks, error) in
+    if let error = error {
+        print(error.localizedDescription)
+        return
+    }
+    
     placemarks?.forEach({ placemark in
         print(placemark.name)
         print("\(placemark.coordinate.latitude), \(placemark.coordinate.longitude)")
