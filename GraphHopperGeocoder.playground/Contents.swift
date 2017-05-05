@@ -7,7 +7,6 @@ let geocoder = Geocoder(accessToken: accessToken)
 
 let query = "HSR, Rapperswil"
 let forwardGeocodeOptions = ForwardGeocodeOptions(query: query)
-forwardGeocodeOptions.limit = 3
 
 _ = geocoder.geocode(forwardGeocodeOptions, completionHandler: { (placemarks, error) in
     placemarks?.forEach({
