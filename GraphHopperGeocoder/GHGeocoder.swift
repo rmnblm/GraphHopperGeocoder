@@ -144,7 +144,7 @@ open class Geocoder: NSObject {
     }
 }
 
-extension HTTPURLResponse {
+internal extension HTTPURLResponse {
     var creditLimit: Int? {
         return allHeaderFields["X-RateLimit-Limit"] as? Int
     }

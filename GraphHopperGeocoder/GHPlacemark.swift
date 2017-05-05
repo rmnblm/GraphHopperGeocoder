@@ -41,21 +41,21 @@ open class Placemark {
     }()
 
     /**
-
+     The OSM type is occasionally also used as an add-on tag for "variants" of a feature category.
      */
     open lazy var osmType: String? = {
         return self.json["osm_type"] as? String
     }()
 
     /**
-
+     The OSM key of an entity is used to describe a topic, category, or type of the feature.
      */
     open lazy var osmKey: String? = {
         return self.json["osm_key"] as? String
     }()
 
     /**
-
+     The OSM value details the specific form of the key-specified feature.
      */
     open lazy var osmValue: String? = {
         return self.json["osm_value"] as? String

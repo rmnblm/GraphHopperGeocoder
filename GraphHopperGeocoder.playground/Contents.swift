@@ -6,9 +6,10 @@ let accessToken = "GRAPHHOPPER_ACCESS_TOKEN"
 let geocoder = Geocoder(accessToken: accessToken)
 
 let query = "HSR, Rapperswil"
-let forwardGeocodeOptions = ForwardGeocodeOptions(query: query)
+var options: GeocodeOptions = ForwardGeocodeOptions(query: query)
 
-_ = geocoder.geocode(forwardGeocodeOptions, completionHandler: { (placemarks, error) in
+print("====== Forward Geocode Results ======\n")
+_ = geocoder.geocode(options, completionHandler: { (placemarks, error) in
     placemarks?.forEach({
         print("\n")
         print("Point: \t\t\($0.coordinate.latitude),\($0.coordinate.longitude)")
@@ -22,8 +23,18 @@ _ = geocoder.geocode(forwardGeocodeOptions, completionHandler: { (placemarks, er
         print("State: \t\t\($0.state)")
         print("Country: \t\($0.country)")
         if let region = $0.region {
-            print("Region: \t\tNorthWest: \(region.topLeft.latitude) \(region.topLeft.longitude) \tSouthEast: \(region.bottomRight.latitude) \(region.bottomRight.longitude)")
+            print("Region: \t\tTop-left: \(region.topLeft.latitude) \(region.topLeft.longitude) \tBottom-right: \(region.bottomRight.latitude) \(region.bottomRight.longitude)")
         }
+    })
+})
+
+print("\n\n")
+print("====== Reverse Geocode Results ======\n")
+options = ReverseGeocodeOptions(coordinate: CLLocationCoordinate2D(latitude: 47.222943, longitude: 8.817238649765951))
+_ = geocoder.geocode(options, completionHandler: { (placemarks, error) in
+    placemarks?.forEach({ placemark in
+        print(placemark.name)
+        print("\(placemark.coordinate.latitude), \(placemark.coordinate.longitude)")
     })
 })
 
