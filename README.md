@@ -36,7 +36,7 @@ import GraphHopperGeocoder
 // use this
 let goecoder = Geocoder(accessToken: "YOUR ACCESS TOKEN")
 // or if you have set your access token in the Info.plist
-let geocoder = geocoder()
+let geocoder = Geocoder()
 ```
 
 ### Forward geocoding options
