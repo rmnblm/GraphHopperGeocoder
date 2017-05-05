@@ -8,7 +8,7 @@ public enum GeocodeProvider: String {
 
 open class GeocodeOptions: NSObject {
 
-    public var locale = "en"
+    public var locale = Locale.current.languageCode ?? "en"
     public var debug = false
     public var provider: GeocodeProvider = .graphhopper
 
