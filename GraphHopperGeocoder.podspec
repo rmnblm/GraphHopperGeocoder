@@ -5,8 +5,8 @@ Pod::Spec.new do |s|
   s.homepage = 'https://github.com/rmnblm/GraphHopperGeocoder'
   s.summary = '🔍 The GraphHopper Geocoder API wrapped in an easy-to-use Swift framework. '
   s.authors = {
-    'rmnblm': 'rmnblm@gmail.com',
-    'iphilgood': 'phil.schilter@gmail.com'
+    'rmnblm' => 'rmnblm@gmail.com',
+    'iphilgood' => 'phil.schilter@gmail.com'
   }
   s.source = {
     git: 'https://github.com/rmnblm/GraphHopperGeocoder.git',
