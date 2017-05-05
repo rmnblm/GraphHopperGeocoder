@@ -1,11 +1,3 @@
-//
-//  GHBoundingBox.swift
-//  GraphHopperRouting
-//
-//  Created by Roman Blum on 05.05.17.
-//  Copyright © 2017 rmnblm. All rights reserved.
-//
-
 import CoreLocation
 
 open class BoundingBox {
