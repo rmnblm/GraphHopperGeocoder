@@ -84,10 +84,10 @@ For more information, consider the [official documentation](https://graphhopper.
 
 ## License
 
-This project is released under the [MIT license](LICENSE)
+This project is released under the [MIT license](LICENSE).
 
 ## About
 
 <img src="images/HSRLogo.png" width="184" />
 
-​The GraphHopper Geocoder Swift Framework is crafted with ​:heart:​ by [@rmnblm](https://github.com/rmnblm) and [@iphilgood](https://github.com/iphilgood) during the Bachelor thesis at [HSR University of Applied Sciences](https://www.hsr.ch) in Rapperswil.
+​The GraphHopper Geocoder Swift Framework is crafted with :heart: by [@rmnblm](https://github.com/rmnblm) and [@iphilgood](https://github.com/iphilgood) during the Bachelor thesis at [HSR University of Applied Sciences](https://www.hsr.ch) in Rapperswil.
