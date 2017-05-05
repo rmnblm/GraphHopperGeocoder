@@ -5,8 +5,9 @@ import PlaygroundSupport
 let accessToken = "GRAPHHOPPER_ACCESS_TOKEN"
 let geocoder = Geocoder(accessToken: accessToken)
 
-let query = "Hotel Strela"
+let query = "HSR, Rapperswil"
 let forwardGeocodeOptions = ForwardGeocodeOptions(query: query)
+forwardGeocodeOptions.limit = 3
 
 _ = geocoder.geocode(forwardGeocodeOptions, completionHandler: { (placemarks, error) in
     placemarks?.forEach({
@@ -22,7 +23,7 @@ _ = geocoder.geocode(forwardGeocodeOptions, completionHandler: { (placemarks, er
         print("State: \t\t\($0.postalAddress?.state ?? "")")
         print("Country: \t\($0.postalAddress?.country ?? "")")
         if let region = $0.region {
-            print("Region: \t\tNorthWest: \(region[0].latitude) \(region[0].longitude) \tSouthEast: \(region[1].latitude) \(region[1].longitude)")
+            print("Region: \t\tNorthWest: \(region.northWest.latitude) \(region.northWest.longitude) \tSouthEast: \(region.southEast.latitude) \(region.southEast.longitude)")
         }
     })
 })
