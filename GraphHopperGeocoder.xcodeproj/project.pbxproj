@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30B2C3601EBC5BED0040F4BD /* GHBoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2C35F1EBC5BED0040F4BD /* GHBoundingBox.swift */; };
 		4A930B6C1EB4A415007F9A5B /* GraphHopperGeocoder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A930B621EB4A414007F9A5B /* GraphHopperGeocoder.framework */; };
 		4A930B711EB4A415007F9A5B /* GraphHopperGeocoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A930B701EB4A415007F9A5B /* GraphHopperGeocoderTests.swift */; };
 		4A930B931EB4A4A5007F9A5B /* GHGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A930B921EB4A4A5007F9A5B /* GHGeocoder.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		3039D3B91EB758D700B8703F /* GraphHopperGeocoder.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GraphHopperGeocoder.playground; sourceTree = "<group>"; };
+		30B2C35F1EBC5BED0040F4BD /* GHBoundingBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GHBoundingBox.swift; sourceTree = "<group>"; };
 		4A930B621EB4A414007F9A5B /* GraphHopperGeocoder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GraphHopperGeocoder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A930B661EB4A414007F9A5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A930B6B1EB4A415007F9A5B /* GraphHopperGeocoderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GraphHopperGeocoderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +83,7 @@
 				4A930B921EB4A4A5007F9A5B /* GHGeocoder.swift */,
 				4A930B941EB4A543007F9A5B /* GHGeocodeOptions.swift */,
 				4A930B961EB4A867007F9A5B /* GHPlacemark.swift */,
+				30B2C35F1EBC5BED0040F4BD /* GHBoundingBox.swift */,
 			);
 			path = GraphHopperGeocoder;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30B2C3601EBC5BED0040F4BD /* GHBoundingBox.swift in Sources */,
 				4A930B931EB4A4A5007F9A5B /* GHGeocoder.swift in Sources */,
 				4A930B951EB4A543007F9A5B /* GHGeocodeOptions.swift in Sources */,
 				4A930B971EB4A867007F9A5B /* GHPlacemark.swift in Sources */,

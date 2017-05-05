@@ -3,32 +3,28 @@ import Contacts
 
 open class Placemark {
 
+    open let coordinate: CLLocationCoordinate2D
+
     fileprivate let json: JSONDictionary
 
-    internal init(json: JSONDictionary) {
+    internal init(_ coordinate: CLLocationCoordinate2D, json: JSONDictionary) {
+        self.coordinate = coordinate
         self.json = json
     }
 
-    public convenience init(placemark: Placemark) {
-        self.init(json: placemark.json)
-    }
-
-    open var coordinate: CLLocationCoordinate2D {
-        var coordinate = CLLocationCoordinate2D()
-
-        if let pointJson = json["point"] as? JSONDictionary {
-            if let lat = pointJson["lat"] as? CLLocationDegrees, let lng = pointJson["lng"] as? CLLocationDegrees {
-                coordinate.latitude = lat
-                coordinate.longitude = lng
-            }
+    public convenience init?(json: JSONDictionary) {
+        guard let pointJson = json["point"] as? JSONDictionary,
+            let lat = pointJson["lat"] as? CLLocationDegrees,
+            let lng = pointJson["lng"] as? CLLocationDegrees else {
+            return nil
         }
 
-        return coordinate
+        self.init(CLLocationCoordinate2D(latitude: lat, longitude: lng), json: json)
     }
 
-    open var osmId: Int? {
-        return json["osm_id"] as? Int
-    }
+    open lazy var osmId: Int? = {
+        return self.json["osm_id"] as? Int
+    }()
 
     open var osmType: String? {
         return json["osm_type"] as? String
@@ -42,16 +38,12 @@ open class Placemark {
         return json["osm_value"] as? String
     }
 
-    open var region: [CLLocationCoordinate2D]? {
-        guard let boundingBox = json["extent"] as? [CLLocationDegrees] else {
+    open lazy var region: BoundingBox? = {
+        guard let boundingBox = self.json["extent"] as? [CLLocationDegrees] else {
             return nil
         }
-
-        assert(boundingBox.count == 4, "Region should have coordinates for north-west and south-east")
-        let northWest = CLLocationCoordinate2D(json: Array(boundingBox.prefix(2)))
-        let southEast = CLLocationCoordinate2D(json: Array(boundingBox.suffix(2)))
-        return [northWest, southEast]
-    }
+        return BoundingBox(degrees: boundingBox)
+    }()
 
     open var name: String? {
         return json["name"] as? String
