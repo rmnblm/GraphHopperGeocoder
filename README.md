@@ -81,3 +81,13 @@ let task = geocoder.geocode(options, completionHandler: { (placemarks, error) in
 ```
 
 For more information, consider the [official documentation](https://graphhopper.com/api/1/docs/#geocoding-api) to learn more about the options and the result.
+
+## License
+
+This project is released under the [MIT license](LICENSE)
+
+## About
+
+<img src="images/HSRLogo.png" width="184" />
+
+​The GraphHopper Geocoder Swift Framework is crafted with ​:heart:​ by [@rmnblm](https://github.com/rmnblm) and [@iphilgood](https://github.com/rmnblm) during the Bachelor thesis at [HSR University of Applied Sciences](https://www.hsr.ch) in Rapperswil.
