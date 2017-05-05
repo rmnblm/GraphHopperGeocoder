@@ -1,14 +1,25 @@
 import CoreLocation
 
-public enum GeocodeProvider: String {
-    case graphhopper = "default"
-    case nominatim = "nominatim"
-    case opencagedata = "opencagedata"
-}
-
+/**
+ A `GeocodeOptions` object is used to specify user-defined options when querying the GraphHopper Geocoding API.
+ 
+ Do not create instances of `GeocodeOptions` directly. Instead, create instances of `ForwardGeocodeOptions` or `ReverseGeocodeOptions`.
+ */
 open class GeocodeOptions: NSObject {
-    public var locale: String?
-    public var debug: Bool?
+    /**
+     Display the search results for the specified locale. If the locale wasn't found the default (en) is used.
+
+     Uses the current language code by default.
+     */
+    public var locale: String? = Locale.current.languageCode
+
+    /**
+     The provider to use when starting a geocode request.
+
+     Note: The provider parameter is currently under development and can fall back to default at any time. The intend is to provide alternatives to our default geocoder.
+     Also currently only the default (`.graphhopper`) provider supports autocompletion of partial search strings.
+     All providers support normal "forward" geocoding and reverse geocoding via reverse=true.
+     */
     public var provider: GeocodeProvider?
 
     internal var params: [URLQueryItem] {
@@ -16,10 +27,6 @@ open class GeocodeOptions: NSObject {
 
         if let locale = self.locale {
             params.append(URLQueryItem(name: "locale", value: locale))
-        }
-
-        if let debug = self.debug {
-            params.append(URLQueryItem(name: "debug", value: String(debug)))
         }
 
         if let provider = self.provider {
@@ -34,11 +41,33 @@ open class GeocodeOptions: NSObject {
     }
 }
 
+/**
+ A `ForwardGeocodeOptions` object is used to find a latitude/longitude pair for a given address.
+ */
 open class ForwardGeocodeOptions: GeocodeOptions {
+    /**
+     Specify an address
+     */
     public let query: String
+
+    /**
+     Specify how many results you want
+     */
     public var limit: UInt?
+
+    /**
+     The location bias.
+     
+     This property prioritizes results that are close to this coordinate, e.g. the user’s current location
+     */
     public var coordinate: CLLocationCoordinate2D?
 
+    /**
+     Initializes a forward geocode options object with the given query and an optional location bias.
+
+     - parameter query: A name or address to search for.
+     - paramter location: A bias to prioritize results that are close to this coordinate.
+     */
     public init(query: String, coordinate: CLLocationCoordinate2D? = nil) {
         assert(!query.isEmpty, "Specify a query.")
         self.query = query
@@ -46,11 +75,17 @@ open class ForwardGeocodeOptions: GeocodeOptions {
         super.init()
     }
 
+    /**
+     Initializes a forward geocode options object with the given query and a location bias.
+
+     - parameter query: A name or address to search for.
+     - paramter location: A bias to prioritize results that are close to this location.
+     */
     public convenience init(query: String, location: CLLocation) {
         self.init(query: query, coordinate: location.coordinate)
     }
 
-    override var params: [URLQueryItem] {
+    internal override var params: [URLQueryItem] {
         var params = super.params
 
         params.append(URLQueryItem(name: "q", value: String(query)))
@@ -67,24 +102,39 @@ open class ForwardGeocodeOptions: GeocodeOptions {
     }
 }
 
+/**
+ A `ReverseGeocodeOptions` object is used to find an address for a given latitude/longitude pair.
+ */
 open class ReverseGeocodeOptions: GeocodeOptions {
+    /**
+     The location to find amenities, cities etc.
+     */
     public let coordinate: CLLocationCoordinate2D
-    public let reverse = true
 
+    /**
+     Initializes a reverse geocode options object with the given coordinate.
+
+     - parameter coordinate: A coordinate to search the address for.
+     */
     public init(coordinate: CLLocationCoordinate2D) {
         self.coordinate = coordinate
         super.init()
     }
 
+    /**
+     Initializes a reverse geocode options object with the given location.
+
+     - parameter location: A location to search the address for.
+     */
     public convenience init(location: CLLocation) {
         self.init(coordinate: location.coordinate)
     }
 
-    override var params: [URLQueryItem] {
+    internal override var params: [URLQueryItem] {
         var params = super.params
 
         params.append(URLQueryItem(name: "point", value: "\(coordinate.latitude),\(coordinate.longitude)"))
-        params.append(URLQueryItem(name: "reverse", value: String(reverse)))
+        params.append(URLQueryItem(name: "reverse", value: "true"))
 
         return params
     }

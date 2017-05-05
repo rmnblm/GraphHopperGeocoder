@@ -5,15 +5,37 @@ public typealias JSONDictionary = [String: Any]
 let GHGeocoderErrorDomain = "GHGeocoderErrorDomain"
 let defaultAccessToken = Bundle.main.object(forInfoDictionaryKey: "GraphHopperAccessToken") as? String
 
+/**
+ A `Geocoder` object is used to fetch a coordinate for a given address string or vice versa. The geocoding object passes your request to the [GraphHopper Geocoding API](https://graphhopper.com/api/1/docs/geocoding/) and asynchronously returns the requested information to a completion handler that you provide.
+
+ */
 open class Geocoder: NSObject {
+    /**
+     A closure (block) to be called when a geocoding request is complete.
+
+     - parameter paths: An array of `Placemark` objects. For reverse geocoding requests, this array represents places, beginning with the most local place, such as an address, and ending with the broadest possible place, which is usually a country. For forward geocoding requests, this array may represent places where specified address matched more than one location.
+
+        If the request was canceled or there was an error obtaining the placemarks, this parameter may be `nil`.
+     - parameter error: The error that occurred, or `nil` if the placemarks were obtained successfully.
+     */
     public typealias CompletionHandler = (_ placemark: [Placemark]?, _ error: Error?) -> Void
 
+    /**
+     The shared geocoder object.
+
+     If this object is used, the GraphHopper Access Token must be specified in the Info.plist of the application's main bundle with the key `GraphHopperAccessToken`.
+     */
     open static let shared = Geocoder(accessToken: nil)
 
     internal let accessToken: String
     internal let baseURL: URL
 
-    public init(accessToken: String?, apiVersion: String? = nil) {
+    /**
+     Initializes a new geocoding object with an optional access token.
+
+     - parameter accessToken: A GraphHopper Access Token. If nil, the access token must be specified in the Info.plist of the application's main bundle with the key `GraphHopperAccessToken`.
+     */
+    public init(accessToken: String?) {
         guard let token = accessToken ?? defaultAccessToken else {
             fatalError("You must provide an access token in order to use the GraphHopper Geocoding API.")
         }
@@ -27,6 +49,12 @@ open class Geocoder: NSObject {
         self.baseURL = baseURLComponents.url!
     }
 
+    /**
+     Starts an asynchronous session task to geocode the specified forward or revers options and delivers the placemarks in the completion handler.
+
+     - parameter options: A `GeocodeOptions` object specifying the options to consider when calling the GraphHopper Geocoding API.
+     - parameter completionHandler: The closure (block) to call with the resulting placemarks.
+     */
     open func geocode(_ options: GeocodeOptions, completionHandler: @escaping CompletionHandler) -> URLSessionDataTask {
         let url = urlForGeocoding(options)
         let task = dataTask(withURL: url, completionHandler: { (json) in
@@ -39,7 +67,7 @@ open class Geocoder: NSObject {
         return task
     }
 
-    fileprivate func dataTask(
+    private func dataTask(
         withURL url: URL,
         completionHandler: @escaping (_ json: JSONDictionary) -> Void,
         errorHandler: @escaping (_ error: Error) -> Void) -> URLSessionDataTask {
@@ -73,7 +101,7 @@ open class Geocoder: NSObject {
         })
     }
 
-    open func urlForGeocoding(_ options: GeocodeOptions) -> URL {
+    private func urlForGeocoding(_ options: GeocodeOptions) -> URL {
         let params = options.params + [
             URLQueryItem(name: "key", value: accessToken),
         ]
