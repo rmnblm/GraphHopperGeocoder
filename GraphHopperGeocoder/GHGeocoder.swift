@@ -4,7 +4,6 @@ public typealias JSONDictionary = [String: Any]
 
 let GHGeocoderErrorDomain = "GHGeocoderErrorDomain"
 let defaultAccessToken = Bundle.main.object(forInfoDictionaryKey: "GraphHopperAccessToken") as? String
-let defaultApiVersion = "1"
 
 open class Geocoder: NSObject {
     public typealias CompletionHandler = (_ placemark: [Placemark]?, _ error: Error?) -> Void
@@ -24,7 +23,7 @@ open class Geocoder: NSObject {
         var baseURLComponents = URLComponents()
         baseURLComponents.scheme = "https"
         baseURLComponents.host = "graphhopper.com"
-        baseURLComponents.path = "/api/\(apiVersion ?? defaultApiVersion)/geocode"
+        baseURLComponents.path = "/api/1/geocode"
         self.baseURL = baseURLComponents.url!
     }
 
