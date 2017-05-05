@@ -34,7 +34,7 @@ let goecoder = Geocoder(accessToken: "YOUR ACCESS TOKEN")
 let geocoder = geocoder()
 ```
 
-### Forward Geocoding
+### Forward geocoding options
 
 Configure the forward geocoding options
 
@@ -43,20 +43,9 @@ let options = ForwardGeocodeOptions(query: "HSR Rapperswil")
 options.limit = 3
 ```
 
-Make the async request by calling the `calculate(_:completionHandler)` method
-
-``` swift
-let task = geocoder.geocode(options, completionHandler: { (placemarks, error) in
-    placemarks?.forEach({ placemark in
-        print(placemark.name)
-        print("\(placemark.coordinate.latitude), \(placemark.coordinate.longitude)")
-    })
-})
-```
-
 For more information, consider the [official documentation](https://graphhopper.com/api/1/docs/#geocoding-api) to learn more about the options and the result.
 
-### Reverse Geocoding
+### Reverse geocoding options
 
 Configure the reverse geocoding options
 
@@ -65,20 +54,25 @@ let coordinate = CLLocationCoordinate2D(latitude: 47.222943, longitude: 8.817238
 let options = ReverseGeocodeOptions(coordinate: coordinate)
 ```
 
-Make the async request by calling the `calculate(_:completionHandler)` method
+### Geocode request
+
+Make the async request by calling the `calculate(_:completionHandler)` method and passing the options.
 
 ```swift
 let task = geocoder.geocode(options, completionHandler: { (placemarks, error) in
     placemarks?.forEach({ placemark in
         print(placemark.name)
-        print(placemark.postalAddress?.street)
-        print(placemark.postalAddress?.postalCode)
-        print(placemark.postalAddress?.city)
-        print(placemark.postalAddress?.state)
-        print(placemark.postalAddress?.country)
+        print("\(placemark.coordinate.latitude), \(placemark.coordinate.longitude)")
+        print(placemark.street)
+        print(placemark.postalCode)
+        print(placemark.city)
+        print(placemark.state)
+        print(placemark.country)
     })
 })
 ```
+
+## More Information
 
 For more information, consider the [official documentation](https://graphhopper.com/api/1/docs/#geocoding-api) to learn more about the options and the result.
 
